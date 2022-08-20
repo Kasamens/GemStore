@@ -19,6 +19,14 @@ def get_gems() -> List[gem_models.Gem]:
         return result.all()
 
 
+@app.get("/gems/{id}")
+def get_gem(id: int) -> gem_models.Gem:
+    with Session(engine) as session:
+        statement = select(gem_models.Gem).where(gem_models.Gem.id == id)
+        result = session.exec(statement)
+        return result.first()
+
+
 @app.post("/gems/{gem}")
 def add_gem(new_gem: gem_models.Gem, gem_props: gem_models.GemProperties):
 

@@ -19,14 +19,14 @@ class GemColor(str, Enum):
     I = "I"
 
 
-class GemType(int, Enum):
+class GemType(str, Enum):
     DIAMOND = "DIAMOND"
     RUBY = "RUBY"
     EMERALD = "EMERALD"
 
 
 class GemProperties(SQLModel, table=True):
-    id: Optional[int] = Field(primary_key=True)
+    id: Optional[int] = Field(default=None, primary_key=True)
     size: float
     clarity: Optional[GemClarity] = None
     color: Optional[GemColor] = None
